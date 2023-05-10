@@ -1,7 +1,7 @@
 import NuevoPresupuesto from "./NuevoPresupuesto"
 import ControlPresupuesto from "./ControlPresupuesto"
 
-const Header = ( { presupuesto, setPresupuesto, isValid, setIsValid } ) => {
+export const Header = ( { presupuesto, setPresupuesto, isValid, setIsValid } ) => {
   return (
     <header>
        
@@ -22,5 +22,3 @@ const Header = ( { presupuesto, setPresupuesto, isValid, setIsValid } ) => {
     </header>
   )
 }
-
-export default Header;
