@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from '../hooks/useForm';
 import Alerta from './Alerta';
-import { generarId } from '../helpers';
 import cerrarModal from '../img/cerrar.svg'
 
 export const Modal = ( { 
@@ -13,20 +12,13 @@ export const Modal = ( {
    } ) => {
 
   const [mensaje, setMensaje] = useState('');
-    
+  const [id, setId] = useState('');
+  const [fecha, setFecha] = useState('');
   //UseForm
     const {
-      formState,
-      setFormState,
-      nombreGasto,
-      hundleChange,
-      cantidadGasto,
-      categoria
-    } = useForm({
-      nombreGasto: '',
-      cantidadGasto: '',
-      categoria: ''
-    });
+      formState, setFormState,
+      nombreGasto, hundleChange,
+      cantidadGasto, categoria } = useForm();
   
     const hundleMoodal = () => {
       setModalAnimar(false);
@@ -38,20 +30,22 @@ export const Modal = ( {
 
     //Effect
     useEffect(() => {    
+
       if(Object.keys(editarGastos).length) {
-        console.log(editarGastos)
         setFormState({
           nombreGasto: editarGastos.nombreGasto,
           cantidadGasto: editarGastos.cantidadGasto,
-          categoria: editarGastos.categoria
+          categoria: editarGastos.categoria,
         })
+        setId(editarGastos.id);
+        setFecha(editarGastos.fecha)
       }
-    }, [editarGastos])
+    }, []);
     
 
-    const hundleGastos = e => {
-      e.preventDefault();
+    const hundleSubmit = e => {
 
+      e.preventDefault();
       if( Object.values(formState).includes('')) {
         setMensaje('Todos los campos son obligatorios');
 
@@ -60,9 +54,10 @@ export const Modal = ( {
         }, 3000);
         return
       }
-      const gasto = { nombreGasto, cantidadGasto, categoria, id: generarId() };
-      guardarGasto(gasto);
-    }
+
+      guardarGasto({ nombreGasto, cantidadGasto, categoria, id, fecha });
+    };
+
   return (
     <div className="modal">
         <div  
@@ -74,17 +69,17 @@ export const Modal = ( {
 
         <form 
           className={`formulario ${ modalAnimar ? 'animar' : 'cerrar' }` }
-          onSubmit={ hundleGastos }
+          onSubmit={ hundleSubmit }
           autoComplete="off"
           >
-          <legend>Nuevo gasto</legend>
+          <legend>{ editarGastos.id ? 'Editar gasto': 'Nuevo gasto' }</legend>
           { (mensaje) && <Alerta tipo={'error'}> {mensaje} </Alerta>}
           <div className="campo">
             <label htmlFor="gasto">Nombre del gasto</label>
             <input 
               type="text"
               id='gasto'
-              placeholder='Ingrese el nombre de tu gasato'
+              placeholder='Ingrese el nombre de tu gasto'
               onChange={hundleChange}
               value={nombreGasto}
               name='nombreGasto'
@@ -126,7 +121,7 @@ export const Modal = ( {
 
           <input 
             type="submit"
-            value="Añadir gasto"
+            value= { editarGastos.id ? 'Guardar cambios' : 'Añadir gasto' }
           />
         </form>
     </div>

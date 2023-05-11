@@ -1,6 +1,6 @@
 import { Gasto } from "./Gasto"
 
-export const ListadoGastos = ({ guardarGastos, seteditarGastos }) => {
+export const ListadoGastos = ({ guardarGastos, seteditarGastos, eliminarGasto }) => {
   return (
 
     <>
@@ -11,9 +11,10 @@ export const ListadoGastos = ({ guardarGastos, seteditarGastos }) => {
               guardarGastos.map(gasto => (
                 <Gasto
                   key={gasto.id}
+                  eliminarGasto={eliminarGasto}
                   seteditarGastos={seteditarGastos}
                   gasto={gasto}
-                  {...gasto} />
+                  />
               ))
             }
           </div>

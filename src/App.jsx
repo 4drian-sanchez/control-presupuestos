@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { generarId } from './helpers';
 import { Header, Modal, ListadoGastos } from "./components"
 import iconoNuevoGasto from './img/nuevo-gasto.svg'
 
@@ -13,8 +14,16 @@ function App() {
   const [editarGastos, seteditarGastos] = useState({});
 
   const guardarGasto = (gasto) => {
-    gasto.fecha = Date.now();
-    setguardarGastos([...guardarGastos, gasto]);
+
+    if (gasto.id) {
+      const gastoActualizado = guardarGastos.map(gastoState => (gastoState.id === gasto.id) ? gasto : gastoState);
+      setguardarGastos(gastoActualizado);
+    } else {
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setguardarGastos([...guardarGastos, gasto]);
+    }
+
 
     setModalAnimar(false);
     setTimeout(() => {
@@ -30,7 +39,7 @@ function App() {
         setModalAnimar(true);
       }, 300);
     }
-    
+
   }, [editarGastos])
 
   const hundleMoodal = () => {
@@ -42,7 +51,10 @@ function App() {
   };
 
 
-
+  const eliminarGasto = id => {
+    const GastosActualizados = guardarGastos.filter( gastosState => gastosState.id !== id);
+    setguardarGastos(GastosActualizados);
+  }
 
   return (
 
@@ -67,6 +79,7 @@ function App() {
           <ListadoGastos
             guardarGastos={guardarGastos}
             seteditarGastos={seteditarGastos}
+            eliminarGasto={eliminarGasto}
           />
         </main>
       }

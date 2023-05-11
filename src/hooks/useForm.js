@@ -1,8 +1,12 @@
 import { useState } from "react";
 
-export const useForm = (initialForm = {}) => {
+export const useForm = () => {
   
-    const [ formState, setFormState ] = useState( initialForm );
+    const [ formState, setFormState ] = useState( {
+        nombreGasto: '',
+        cantidadGasto: '',
+        categoria: ''
+      } );
 
     const hundleChange = ({ target: { name, value } }) => {
         setFormState({
