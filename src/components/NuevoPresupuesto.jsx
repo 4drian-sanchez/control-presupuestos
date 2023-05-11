@@ -38,7 +38,7 @@ const NuevoPresupuesto = ( {
           autoComplete='off'
           >
             <div className="campo">
-                <label htmlFor="presupuesto">Definir presupuesto</label>
+                <label htmlFor="presupuesto">Define un presupuesto</label>
                 <input 
                     type="number"
                     className="nuevo-presupuesto"

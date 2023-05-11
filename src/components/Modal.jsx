@@ -8,12 +8,14 @@ export const Modal = ( {
    modalAnimar,
    setModalAnimar,
    guardarGasto,
-   editarGastos
+   editarGastos,
+   seteditarGastos
    } ) => {
 
   const [mensaje, setMensaje] = useState('');
   const [id, setId] = useState('');
   const [fecha, setFecha] = useState('');
+
   //UseForm
     const {
       formState, setFormState,
@@ -22,7 +24,7 @@ export const Modal = ( {
   
     const hundleMoodal = () => {
       setModalAnimar(false);
-
+      seteditarGastos({});
       setTimeout( () => {
         setModal(false)
       }, 500)

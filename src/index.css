@@ -69,7 +69,8 @@ header h1 {
     }
 }
 .formulario legend {
-    font-size: 3.6rem;
+    font-size: 2rem;
+
     text-align: center;
     display: block;
     text-transform: uppercase;
@@ -78,6 +79,14 @@ header h1 {
     padding-bottom: 1rem;
     border-bottom: 2px solid var(--azul);
 }
+
+@media ( min-width: 390px) {
+.formulario legend {
+    font-size: 3.6rem;
+
+}
+}
+
 .formulario .campo {
     display: grid;
     margin-bottom: 2rem;
@@ -104,7 +113,7 @@ header h1 {
     border: none;
     padding: 1rem;
     text-align: center;
-    margin-top: 2rem;
+    margin:  2rem 0;
     color: var(--blanco);
     font-weight: 900;
     text-transform: uppercase;
@@ -133,14 +142,25 @@ header h1 {
 }
 
 .alerta {
-    padding: 2rem 5rem;
     max-width: 60rem;
     margin: 2rem auto 2rem auto;
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 1.8rem;
     text-align: center;
+    font-size: 1.4rem;
+    padding-left: .5rem;
+
 }
+
+@media (min-width: 390px)  {
+
+    .alerta {
+        padding: 2rem ;
+    font-size: 1.8rem;
+
+    }
+}
+
 .alerta.error {
     background-color: var(--blanco);
     border-left: 5px solid #b91c1c;
@@ -166,7 +186,7 @@ header h1 {
     flex-direction: column;
 }
 .dos-columnas :first-child {
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 }
 @media (min-width: 768px) {
     .dos-columnas {
@@ -185,10 +205,7 @@ header h1 {
 .formulario input[type="number"].nuevo-presupuesto {
     font-size: 2.8rem;
     text-align: center;
-}
-
-.contenedor-presupuesto svg {
-    width: 25rem;
+    width: 100%;
 }
 
 .contenido-presupuesto {
@@ -207,7 +224,7 @@ header h1 {
 }
 .contenido-presupuesto p.negativo,
 .contenido-presupuesto p.negativo span {
-    color: red;
+    color: #DC2525;
 }
 .contenido-presupuesto span {
     font-weight: 900;
@@ -237,14 +254,26 @@ main {
 
 .filtros .campo {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
+
+@media (min-width: 912px) {
+    
+    .filtros .campo {
+    flex-direction: row;
+
+    }
+}
+
 .filtros label {
     font-size: 3rem;
     font-weight: 900;
     color: var(--gris-oscuro);
+    text-align: center;
 }
+
 .filtros select {
     flex: 1;
     padding: 1rem;
@@ -322,8 +351,8 @@ main {
 
 .nuevo-gasto {
     position: fixed;
-    bottom: 5rem;
-    right: 5rem;
+    bottom: 1.5rem;
+    right: 1rem;
 }
 
 .nuevo-gasto img {
@@ -331,6 +360,13 @@ main {
 }
 .nuevo-gasto img:hover {
     cursor: pointer;
+}
+
+@media (min-width: 912px) {
+    .nuevo-gasto {
+        bottom: 5rem;
+        right: 5rem;
+    }
 }
 
 .modal {
@@ -355,8 +391,9 @@ main {
 }
 
 .modal .formulario {
-    max-width: 80rem;
-    width: 40rem;
+    width: 85%;
+    max-width: 60rem;
+    margin: 0 auto;
     transition-property: all;
     transition-duration: 300ms;
     transition-timing-function: ease-in;
