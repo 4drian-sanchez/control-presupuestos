@@ -35,6 +35,7 @@ const NuevoPresupuesto = ( {
           className="formulario"
           onSubmit={hundlePresupuesto}
           noValidate
+          autoComplete='off'
           >
             <div className="campo">
                 <label htmlFor="presupuesto">Definir presupuesto</label>
